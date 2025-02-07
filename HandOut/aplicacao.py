@@ -98,7 +98,7 @@ def main():
 
             
     
-        # Encerra comunicação - aa
+        # Encerra comunicação - aabasdjbasd
         print("-------------------------")
         print("Comunicação encerrada")
         print("-------------------------")
