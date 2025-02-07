@@ -98,7 +98,7 @@ def main():
 
             
     
-        # Encerra comunicação
+        # Encerra comunicação - aa
         print("-------------------------")
         print("Comunicação encerrada")
         print("-------------------------")
