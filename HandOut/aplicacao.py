@@ -20,10 +20,11 @@ import numpy as np
 # se estiver usando windows, o gerenciador de dispositivos informa a porta
 
 #use uma das 3 opcoes para atribuir à variável a porta usada
-#serialName = "/dev/ttyACM0"           # Ubuntu (variacao de)
+serialName = "/dev/ttyACM0"           # Ubuntu (variacao de)
 #serialName = "/dev/tty.usbmodem1411" # Mac    (variacao de)
-serialName = "COM4"                  # Windows(variacao de)  detectar sua porta e substituir aqui
+#serialName = "COM4"                  # Windows(variacao de)  detectar sua porta e substituir aqui
 
+#ENZAO ATUALIZAR AQUI!!! O MEU É UBUNTU
 
 def main():
     try:
