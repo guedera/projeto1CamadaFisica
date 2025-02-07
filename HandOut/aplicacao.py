@@ -24,7 +24,7 @@ serialName = "/dev/ttyACM0"           # Ubuntu (variacao de)
 #serialName = "/dev/tty.usbmodem1411" # Mac    (variacao de)
 #serialName = "COM4"                  # Windows(variacao de)  detectar sua porta e substituir aqui
 
-#ENZAO ATUALIZAR AQUI!!! O MEU É UBUNTU
+#ENZAO ATUALIZAR AQUI!!! O MEU É UBUNTU NO SEU SERÁ COM4!!!
 
 def main():
     try:
@@ -46,7 +46,10 @@ def main():
         #nome de txBuffer. Esla sempre irá armazenar os dados a serem enviados.
         
         #txBuffer = imagem em bytes!
-        txBuffer = b'\x12\x13\xAA\x01'  #isso é um array de bytes. apenas um exemplo para teste. Deverá ser substutuido pelo 
+
+        txBuffer = b'\x12\x13\xAA\x01'  # EXEMPLO 1 - isso é um array de bytes. apenas um exemplo para teste. Deverá ser substutuido pelo 
+
+        #txBuffer = bytearray([12, 34, 56 ,76 ,78]) #EXEMPLO 2
         #array correspondente à imagem
        
         print("meu array de bytes tem tamanho {}" .format(len(txBuffer)))
@@ -57,19 +60,27 @@ def main():
         #faça um print para avisar que a transmissão vai começar.
         #tente entender como o método send funciona!
         #Cuidado! Apenas trasmita arrays de bytes!
-               
         
+        print("Transmissão iniciada!")
         com1.sendData(np.asarray(txBuffer))  #as array apenas como boa pratica para casos de ter uma outra forma de dados
           
         # A camada enlace possui uma camada inferior, TX possui um método para conhecermos o status da transmissão
         # O método não deve estar fincionando quando usado como abaixo. deve estar retornando zero. Tente entender como esse método funciona e faça-o funcionar.
+        
+        while com1.tx.getStatus() < len(txBuffer):
+            time.sleep(0.1)
+            #esperar a transmissão acabar
+
         txSize = com1.tx.getStatus()
         print('enviou = {}' .format(txSize))
         
         #Agora vamos iniciar a recepção dos dados. Se algo chegou ao RX, deve estar automaticamente guardado
         #Observe o que faz a rotina dentro do thread RX
         #print um aviso de que a recepção vai começar.
-        
+        print("\n")
+        print("Recepção iniciada!")
+        print("\n")
+
         #Será que todos os bytes enviados estão realmente guardadas? Será que conseguimos verificar?
         #Veja o que faz a funcao do enlaceRX  getBufferLen
       
@@ -77,6 +88,7 @@ def main():
         txLen = len(txBuffer)
         rxBuffer, nRx = com1.getData(txLen)
         print("recebeu {} bytes" .format(len(rxBuffer)))
+        print("/n")
         
         
         #apenas para teste dos 4 bytes exemplo. NO caso da imagem devera ser retirado para nao poluir...
