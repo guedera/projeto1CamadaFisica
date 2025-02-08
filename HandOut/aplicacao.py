@@ -57,7 +57,7 @@ def main():
         
         #array correspondente à imagem
        
-        print("meu array de bytes tem tamanho {}" .format(len(txBuffer)))
+        print("Meu array de bytes tem tamanho {}" .format(len(txBuffer)))
         #faça aqui uma conferência do tamanho do seu txBuffer, ou seja, quantos bytes serão enviados.
        
             
@@ -77,7 +77,7 @@ def main():
             #esperar a transmissão acabar
 
         txSize = com1.tx.getStatus()
-        print('enviou = {}' .format(txSize))
+        print('enviou = {} bytes' .format(txSize))
         
         #Agora vamos iniciar a recepção dos dados. Se algo chegou ao RX, deve estar automaticamente guardado
         #Observe o que faz a rotina dentro do thread RX
