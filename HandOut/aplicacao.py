@@ -88,7 +88,7 @@ def main():
         txLen = len(txBuffer)
         rxBuffer, nRx = com1.getData(txLen)
         print("recebeu {} bytes" .format(len(rxBuffer)))
-        print("/n")
+        print("\n")
         
         
         #apenas para teste dos 4 bytes exemplo. NO caso da imagem devera ser retirado para nao poluir...
