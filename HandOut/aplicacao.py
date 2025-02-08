@@ -47,9 +47,14 @@ def main():
         
         #txBuffer = imagem em bytes!
 
-        txBuffer = b'\x12\x13\xAA\x01'  # EXEMPLO 1 - isso é um array de bytes. apenas um exemplo para teste. Deverá ser substutuido pelo 
-
+        #txBuffer = b'\x12\x13\xAA\x01'  # EXEMPLO 1 - isso é um array de bytes. apenas um exemplo para teste. Deverá ser substutuido pelo 
         #txBuffer = bytearray([12, 34, 56 ,76 ,78]) #EXEMPLO 2
+
+        imageR = "/home/guedes/Documents/Faculdade/Camadas/projeto1CamadaFisica/HandOut/imgs/image.png"
+        imageW = "/home/guedes/Documents/Faculdade/Camadas/projeto1CamadaFisica/HandOut/imgs/copia.png"
+
+        txBuffer = open(imageR, 'rb').read()
+        
         #array correspondente à imagem
        
         print("meu array de bytes tem tamanho {}" .format(len(txBuffer)))
@@ -92,9 +97,13 @@ def main():
         
         
         #apenas para teste dos 4 bytes exemplo. NO caso da imagem devera ser retirado para nao poluir...
-        for i in range(len(rxBuffer)):
-            print("recebeu {}" .format(rxBuffer[i]))
+        #for i in range(len(rxBuffer)):
+        #    print("recebeu {}" .format(rxBuffer[i]))
         
+        f = open(imageW, 'wb')
+        f.write(rxBuffer)
+
+        f.close()
 
             
     
