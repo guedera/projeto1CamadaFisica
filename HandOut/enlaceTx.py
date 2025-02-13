@@ -53,7 +53,8 @@ class TX(object):
         return(len(self.buffer))
 
     def getStatus(self):
-        time.sleep(10) #9 funciona
+        while self.threadMutex == True:
+            time.sleep(0.05)
         return(self.transLen)
         
 
