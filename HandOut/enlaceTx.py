@@ -53,6 +53,7 @@ class TX(object):
         return(len(self.buffer))
 
     def getStatus(self):
+        time.sleep(10) #9 funciona
         return(self.transLen)
         
 

@@ -50,8 +50,8 @@ def main():
         #txBuffer = b'\x12\x13\xAA\x01'  # EXEMPLO 1 - isso é um array de bytes. apenas um exemplo para teste. Deverá ser substutuido pelo 
         #txBuffer = bytearray([12, 34, 56 ,76 ,78]) #EXEMPLO 2
 
-        imageR = "/home/guedes/Documents/Faculdade/Camadas/projeto1CamadaFisica/HandOut/imgs/image.png"
-        imageW = "/home/guedes/Documents/Faculdade/Camadas/projeto1CamadaFisica/HandOut/imgs/copia.png"
+        imageR = "/home/guedera/Documents/Aulas/Camadas/projeto1CamadaFisica/HandOut/imgs/image.png"
+        imageW = "/home/guedera/Documents/Aulas/Camadas/projeto1CamadaFisica/HandOut/imgs/copia.png"
 
         txBuffer = open(imageR, 'rb').read()
         
@@ -72,9 +72,9 @@ def main():
         # A camada enlace possui uma camada inferior, TX possui um método para conhecermos o status da transmissão
         # O método não deve estar fincionando quando usado como abaixo. deve estar retornando zero. Tente entender como esse método funciona e faça-o funcionar.
         
-        while com1.tx.getStatus() < len(txBuffer):
-            time.sleep(0.1)
-            #esperar a transmissão acabar
+        #while com1.tx.getStatus() < len(txBuffer):
+        #    time.sleep(0.1)
+        #    #esperar a transmissão acabar
 
         txSize = com1.tx.getStatus()
         print('enviou = {} bytes' .format(txSize))
