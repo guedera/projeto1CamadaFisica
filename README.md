@@ -30,8 +30,34 @@ Esse arquivo é uma classe que modela a recepção de dadosm por isso o R, de re
 
 5. `Baud Rate`: É o número de bits que pode ser enviado por segundo. O baud rate foi determinado a partir do tempo pré determinado entre os elementos do sistema e por meio dele é metrificado se o número de bits enviado está de acordo com esse tempo antes estabelecido.
 
+6. `Bit Rate`: O Bit Rate se refere à quantidade de bits transmitidos por segundo em um canal de comunicação. Em sistemas UART, ele normalmente coincide com o baud rate, visto que a transmissão é feita de forma assíncrona e sem codificação adicional por símbolo. No entanto, em sistemas onde mais de um bit pode ser representado por um único sinal, o bit rate pode ser maior que o baud rate. O cálculo do bit rate pode ser feito a partir da fórmula:
 
+Bit Rate = Baud Rate \times Bits por Símbolo
 
+Isso significa que, para uma comunicação eficiente, os dispositivos envolvidos na transmissão precisam estar configurados com a mesma taxa de bits, garantindo que os dados sejam corretamente interpretados e não haja perda de informações.
+
+7. `Buffer`: O buffer é uma estrutura de armazenamento temporário utilizada para garantir que os dados recebidos ou enviados não sejam perdidos durante a transmissão. Em uma comunicação UART, tanto o transmissor quanto o receptor podem utilizar buffers para armazenar os dados temporariamente antes de serem processados. Isso permite lidar com diferenças entre as velocidades de processamento dos dispositivos e reduzir o risco de perda de pacotes. O tamanho do buffer pode variar de acordo com o hardware utilizado, sendo comum o uso de buffers de hardware em microcontroladores para armazenar alguns bytes antes que o processador os leia. No caso de software, as threads podem ser utilizadas para gerenciar a leitura do buffer e evitar que ele transborde.
+
+8. `Frame`: O frame na comunicação UART é a estrutura básica dos dados transmitidos. Ele é composto por um conjunto de bits que inclui:
+
+1. **Start Bit:** Indica o início da transmissão, sinalizando ao receptor que um novo byte está chegando.
+2. **Data Bits:** Contêm a informação sendo transmitida, podendo variar de 5 a 9 bits, sendo 8 bits o mais comum.
+3. **Bit de Paridade (Opcional):** Um bit de controle que pode ser usado para verificar erros na transmissão.
+4. **Stop Bit:** Indica o fim da transmissão do frame e permite que o receptor se prepare para um novo byte.
+
+Essa estrutura padronizada facilita a sincronização e interpretação dos dados entre diferentes dispositivos, garantindo a confiabilidade da comunicação.
+
+9. `Bit de Paridade`: O bit de paridade é um mecanismo de detecção de erros simples usado na comunicação UART. Ele pode ser configurado como paridade par (even parity) ou ímpar (odd parity). O objetivo do bit de paridade é garantir que o número total de bits “1” no frame seja sempre par ou ímpar, dependendo da configuração.
+
+- **Paridade Par (Even Parity):** O bit de paridade é ajustado para garantir que o número total de bits “1” seja par.
+- **Paridade Ímpar (Odd Parity):** O bit de paridade é ajustado para garantir que o número total de bits “1” seja ímpar.
+- **Sem Paridade (No Parity):** Nenhum bit de paridade é adicionado ao frame, o que reduz o overhead, mas pode aumentar o risco de erro sem detecção.
+
+Esse mecanismo permite detectar erros simples, como a inversão de um único bit, mas não corrige erros, necessitando de retransmissão dos dados em caso de falha.
+
+10. `CRC` (Cyclic Redundancy Check):O CRC (Cyclic Redundancy Check) é um método mais robusto de detecção de erros usado em comunicações seriais, incluindo UART. Ele envolve o uso de um algoritmo matemático que calcula um valor de verificação (checksum) baseado nos dados transmitidos. O transmissor envia os dados juntamente com o valor CRC, e o receptor recalcula o CRC a partir dos dados recebidos. Se o CRC calculado pelo receptor for diferente do enviado pelo transmissor, significa que houve erro na transmissão.
+
+Embora a comunicação UART tradicionalmente use apenas paridade simples para detecção de erros, o CRC pode ser implementado em software para aumentar a confiabilidade da comunicação, principalmente em sistemas críticos onde a integridade dos dados é fundamental.
 
 Guilherme GG
 Enzo SC
